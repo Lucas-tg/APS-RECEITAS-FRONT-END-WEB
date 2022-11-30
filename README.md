@@ -1,4 +1,7 @@
-# FrontEnd-Coffe
--
+# Receitas
 
-# MainScreen
+# Back-End:
+https://github.com/PHGrespan/APS_POO
+
+# Front-End:
+https://github.com/Lucas-tg/APS-RECEITAS-FRONT-END-WEB
