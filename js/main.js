@@ -29,7 +29,7 @@ function incluirUsuario(){
   })
     .then((res) => res.json())
     //.then((res) => res.text())
-    .then((text) => console.log(text))
+    //.then((text) => console.log(text))
     .then(listarFetch())
     .catch((err) => console.log(err.message))
 
@@ -47,7 +47,7 @@ function incluirReceita() {
   }
 
   let usuario = nomeUsuarioID.value;
-  console.log(usuario);
+  //console.log(usuario);
 
   fetch(url + '/receitas/' + usuario, {
     headers: headers,
@@ -56,7 +56,7 @@ function incluirReceita() {
   })
     .then((res) => res.json())
     //.then((res) => res.text())
-    .then((text) => console.log(text))
+   // .then((text) => console.log(text))
     .catch((err) => console.log(err.message))
 
   // document.location.reload(true)
@@ -65,7 +65,7 @@ function incluirReceita() {
 // lista receita pelo nome
 function getReceita() {
   let nomeReceita = nomeReceitaID.value
-  console.log(nomeReceita);
+  //console.log(nomeReceita);
 
   fetch(url + '/avaliacoes/' + nomeReceita, {
     headers: headers,
@@ -184,7 +184,7 @@ function removeNoneDescricaoReceitasId(){
 }
 
 
-/*
+/* Esse método nao foi implementado
 1- clica na receita
 2- abre nova pagina com a respectiva receita com detalhes sobre ela
 
@@ -197,6 +197,8 @@ http://localhost:8090/receita/1
 */
 
 
+// abre mais detalhes da receita
+// baseado no ID da receita
 function clicaReceita(id){
   //console.log(id);
 
@@ -215,7 +217,7 @@ function clicaReceita(id){
 
 }
 
-
+// Exibe mais detalhes sobre a receita
 function listarUmaReceita(lista){
 
   // oculta receitas
@@ -227,31 +229,33 @@ function listarUmaReceita(lista){
 
   for(let i = 0; i < lista.object.length; i++){
     let nome = lista.object[i].receita.nome 
-    let autor = lista.object[i].usuario.nome   
+    let autor = lista.object[i].usuario.nome  
+    // let ingredientes = ...
+    let passos = lista.object[i].receita.passos 
     //window.location.href = `${url}/avaliacoes/v1/${i}`
    
-    linha += `
+    linha +=  `
 
-  <div id="${i}" class="col">
-    <div class="card">
-      <img src="./img/bolo_chocolate.jpg" class="card-img-top" alt="bolo_chocolate">
-      <div class="card-body">             
-
-      <h5 class="card-title">${nome}</h5>
-      <p class="card-text">Feito Por: ${autor}</p>
-
-        <button class="btn btn-outline-success" onclick="clicaReceita(${i})">Receita</button>
-      
-
-      </div>
-    </div>
+<div class="card mb-3">
+  <img src="./img/bolo_chocolate.jpg" class="card-img-top" alt="imgReceita">
+  <div class="card-body">
+    <h5 class="card-title">${nome}</h5>
+    <p class="card-text">Igredientes: </p>
+    <p class="card-text">Passos: ${passos} </p>
+    <p class="card-text"><small class="text-muted">Autor: ${autor} </small></p>
+   
   </div>
-    `
+</div>
+
+ `
     
   }
 
       let cardzin = `
-        ${linha}  
+        ${linha} 
+      <br>
+        <a href="./index.html">Voltar</a>
+
   `
     descricaoReceitasId.innerHTML = cardzin
 
@@ -259,3 +263,4 @@ function listarUmaReceita(lista){
   // removo o d-none da classe com id descricaoReceitasId
 
 }
+
